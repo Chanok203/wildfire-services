@@ -23,7 +23,7 @@ def start_streaming():
     # ตั้งค่า Bitrate หรือ Option อื่นๆ (เหมือนใน ffmpeg)
     stream.options = {'preset': 'ultrafast', 'tune': 'zerolatency'}
 
-    print(f"Streaming to {rtmp_url} using PyAV... Press 'q' to stop.")
+    print(f"Streaming to {rtmp_url} using PyAV")
 
     try:
         while cap.isOpened():
@@ -42,9 +42,9 @@ def start_streaming():
                 output_container.mux(packet)
 
             # แสดงภาพตัวอย่าง (Local Preview)
-            cv2.imshow('Drone Mockup (PyAV)', frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
+            # cv2.imshow('Drone Mockup (PyAV)', frame)
+            # if cv2.waitKey(1) & 0xFF == ord('q'):
+            #     break
 
         # Flush encoder (ส่งข้อมูลที่ค้างอยู่ใน Buffer)
         for packet in stream.encode():

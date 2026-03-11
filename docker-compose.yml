@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16.1
+    image: postgis/postgis:16-3.5
     volumes:
       - ./data/postgres/data:/var/lib/postgresql/data
     ports:
@@ -20,7 +20,6 @@ services:
     image: eclipse-mosquitto:2
     ports:
       - 1883:1883
-      - 9001:9001
     volumes:
       - ./config/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ./data/mosquitto/data:/mosquitto/data
@@ -43,6 +42,7 @@ services:
       - "1935:1935" # RTMP
       - "8888:8888" # HLS
       - "8889:8889" # WebRTC
+      - "9997:9997" # Control API
       - "10000:10000/udp" # WebRTC Data
     volumes:
       - ./config/mediamtx.yml:/mediamtx.yml

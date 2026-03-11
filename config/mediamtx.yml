@@ -6,13 +6,31 @@ paths:
 webrtc: yes
 webrtcAddress: :8889
 webrtcEncryption: no
-
-# ใช้พอร์ต 10000 เพื่อให้ตรงกับที่ทำ Port Forwarding ใน Docker
 webrtcLocalUDPAddress: :10000
-
-# อนุญาตให้ Gather IP จาก Interface ต่างๆ
 webrtcIPsFromInterfaces: true
+webrtcAdditionalHosts: [192.168.1.40,192.168.10.99]
 
-# สำคัญที่สุด: ระบุ IP ของ Notebook คุณเพื่อให้ WebRTC หาทางกลับถูก
-# เปลี่ยนเป็น IP เครื่องคุณ (เช็คจาก ipconfig)
-webrtcAdditionalHosts: []
+# --- API Settings ---
+api: true
+apiAddress: :9997
+apiAllowOrigins: ['*']
+
+# --- Authentication Settings ---
+authInternalUsers:
+  # 1. อนุญาตให้ทุกคน Publish และ Read ได้ (สำหรับโดรนและคนดู)
+  - user: any
+    pass:
+    ips: []
+    permissions:
+      - action: publish
+      - action: read
+      - action: playback
+
+  # 2. อนุญาตให้เรียก API ได้จากทุกที่ (สำหรับ Controller ของคุณ)
+  - user: any
+    pass:
+    ips: [] 
+    permissions:
+      - action: api
+      - action: metrics
+      - action: pprof

@@ -3,9 +3,9 @@ import time
 import random
 import json
 
-MQTT_BROKER = "192.168.1.40"
+MQTT_BROKER = "192.168.10.99"
 MQTT_PORT = 1883
-MQTT_TOPIC = "windspeed"
+MQTT_TOPIC = "wind_data"
 
 client = mqtt.Client()
 
@@ -28,12 +28,19 @@ try:
     while True:
         # จำลองค่าลม 0.0 - 10.0 m/s (ทศนิยม 2 ตำแหน่ง)
         wind_speed = round(random.uniform(0.0, 10.0), 2)
+        wind_direction = random.randint(0, 359)
+
+        payload = {
+            "speed": wind_speed,
+            "direction": wind_direction,
+            "ts": int(time.time()),
+        }
 
         # ส่งค่าไปยัง MQTT
-        client.publish(MQTT_TOPIC, str(wind_speed))
+        client.publish(MQTT_TOPIC, json.dumps(payload))
 
-        print(f"Published: {wind_speed} m/s")
-        time.sleep(5) 
+        print(f"Sent: {payload}")
+        time.sleep(5)
 
 except KeyboardInterrupt:
     print("\nStopping Mock Sensor...")
