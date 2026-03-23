@@ -8,7 +8,7 @@ webrtcAddress: :8889
 webrtcEncryption: no
 webrtcLocalUDPAddress: :10000
 webrtcIPsFromInterfaces: true
-webrtcAdditionalHosts: [192.168.1.40,192.168.1.37,172.27.228.246]
+webrtcAdditionalHosts: [192.168.1.40,192.168.1.37,172.27.228.246,192.168.1.37]
 
 # --- API Settings ---
 api: true

@@ -3,7 +3,7 @@ import time
 import random
 import json
 
-MQTT_BROKER = "192.168.10.100"
+MQTT_BROKER = "192.168.1.37"
 MQTT_PORT = 1883
 MQTT_TOPIC = "winds_direction"
 
