@@ -24,5 +24,5 @@ subprocess.run([
     "-pix_fmt", "yuv420p",
 
     "-f", "flv",
-    "rtmp://172.27.228.246/live/drone_01"
+    "rtmp://192.168.1.37/live/drone_01"
 ])
